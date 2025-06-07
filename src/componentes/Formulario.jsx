@@ -17,30 +17,47 @@ export default function Formulario() {
     const scriptURL =
       "https://script.google.com/macros/s/AKfycbwAU_VrAUj3Wk1bm2P2qV108vx8RNlkJuUkU1AvhyqrjS5S7Y1eX2QmrzkJImNdeaXNrA/exec";
 
+    const form = new FormData();
+    form.append("nome", formData.nome);
+    form.append("email", formData.email);
+    form.append("mensagem", formData.mensagem);
+
     try {
       const response = await fetch(scriptURL, {
         method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: form,
       });
 
-      const result = await response.json();
-      alert("Enviado com sucesso!" + result);
+      if (response.ok) {
+        alert("Enviado com sucesso!");
+        setFormData({ nome: "", email: "", mensagem: "" });
+      } else {
+        alert("Erro ao enviar: " + response.statusText);
+      }
     } catch (err) {
-      alert("Erro ao enviar." + err);
+      alert("Erro ao enviar: " + err.message);
     }
   };
 
   return (
     <form className="forms" onSubmit={handleSubmit}>
-      <input name="nome" onChange={handleChange} placeholder="Nome" />
+      <input
+        name="nome"
+        value={formData.nome}
+        onChange={handleChange}
+        placeholder="Nome"
+      />
       <br />
-      <input name="email" onChange={handleChange} placeholder="Email" />
+      <input
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email"
+      />
       <br />
       <textarea
         name="mensagem"
+        value={formData.mensagem}
         onChange={handleChange}
         placeholder="Mensagem"
       />
