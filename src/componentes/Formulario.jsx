@@ -17,7 +17,7 @@ export default function ContatoForm() {
 
   return (
     <form
-      action="https://script.google.com/macros/s/AKfycbwVHFtDzaez9w8ydTNExihzZ_vIx89K0_6SUAZpdYN1yKXQlA6RXLi5SjPwrrjqjEhS/exec"
+      action="https://script.google.com/macros/s/AKfycbzYmcc4q_u5erbHq1UlNVw4VVo5g1x0wdIOBVfVvCd51UJt-97BnIOyjf6nUP2wOD9Q/exec"
       method="POST"
       target="_blank" // abre nova aba após envio, evita recarregar página
       style={{
