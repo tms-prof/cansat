@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export default function Formulario() {
+export default function ContatoForm() {
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -8,60 +8,57 @@ export default function Formulario() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbwVHFtDzaez9w8ydTNExihzZ_vIx89K0_6SUAZpdYN1yKXQlA6RXLi5SjPwrrjqjEhS/exec";
-
-    const form = new FormData();
-    form.append("nome", formData.nome);
-    form.append("email", formData.email);
-    form.append("mensagem", formData.mensagem);
-
-    try {
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: form,
-      });
-
-      if (response.ok) {
-        alert("Enviado com sucesso!");
-        setFormData({ nome: "", email: "", mensagem: "" });
-      } else {
-        alert("Erro ao enviar: " + response.statusText);
-      }
-    } catch (err) {
-      alert("Erro ao enviar: " + err.message);
-    }
+    const { name, value } = e.target;
+    setFormData((dados) => ({
+      ...dados,
+      [name]: value,
+    }));
   };
 
   return (
-    <form className="forms" onSubmit={handleSubmit}>
-      <input
-        name="nome"
-        value={formData.nome}
-        onChange={handleChange}
-        placeholder="Nome"
-      />
-      <br />
-      <input
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="Email"
-      />
-      <br />
-      <textarea
-        name="mensagem"
-        value={formData.mensagem}
-        onChange={handleChange}
-        placeholder="Mensagem"
-      />
-      <br />
+    <form
+      action="https://script.google.com/macros/s/AKfycbwVHFtDzaez9w8ydTNExihzZ_vIx89K0_6SUAZpdYN1yKXQlA6RXLi5SjPwrrjqjEhS/exec"
+      method="POST"
+      target="_blank" // abre nova aba após envio, evita recarregar página
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        maxWidth: "400px",
+      }}
+    >
+      <label>
+        Nome:
+        <input
+          type="text"
+          name="nome"
+          value={formData.nome}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
+      <label>
+        Email:
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
+      <label>
+        Mensagem:
+        <textarea
+          name="mensagem"
+          value={formData.mensagem}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
       <button type="submit">Enviar</button>
     </form>
   );
