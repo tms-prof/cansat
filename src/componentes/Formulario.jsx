@@ -15,7 +15,7 @@ export default function Formulario() {
     e.preventDefault();
 
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbxTxd9UPpNd_ikmK-4i8k14tNkosk-El-faFR-slUCVdEHahGKeQAqwnjIc-TlnjuYbNQ/exec";
+      "https://script.google.com/macros/s/AKfycbzR8KG7dT9lwdAgKo9S5VyzxYK8JnGbE9A_2L5qMZAsZoBrRn9vFTB2YXx-3mEnVml4_g/exec";
 
     const form = new FormData();
     form.append("nome", formData.nome);
