@@ -25,7 +25,7 @@ export default function Formulario() {
     try {
       const response = await fetch(scriptURL, {
         method: "POST",
-        body: form,
+        body: URLSearchParams(form),
       });
 
       if (response.ok) {
