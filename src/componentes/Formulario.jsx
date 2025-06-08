@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRef } from "react";
 
 export default function ContatoForm() {
   const [formData, setFormData] = useState({
@@ -15,11 +16,22 @@ export default function ContatoForm() {
     }));
   };
 
+  const formRef = useRef(null);
+
+  const handleSubmit = () => {
+    setTimeout(() => {
+      if (formRef.current) {
+        formRef.current.reset(); // limpa após envio
+      }
+    }, 1000); // tempo para garantir que o envio ocorra
+  };
+
   return (
     <form
       action="https://script.google.com/macros/s/AKfycbwBYZLyTJRP5mOIQQpgNitoSIZLQAv0lPpLM6nsqHnH3xKH5PPP8WDoU9r0Ti2gWfrnzA/exec"
       method="POST"
       //target="_blank" // abre nova aba após envio, evita recarregar página
+      onSubmit={handleSubmit}
       style={{
         display: "flex",
         flexDirection: "column",
