@@ -5,7 +5,7 @@ import FormularioFetch from "./componentes/FormularioFetch";
 function App() {
   return (
     <div className="app-conteiner">
-      <FormularioFetch />
+      <Formulario />
     </div>
   );
 }
