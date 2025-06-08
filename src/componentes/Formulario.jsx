@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRef } from "react";
 
 export default function ContatoForm() {
   const [formData, setFormData] = useState({
@@ -15,8 +14,6 @@ export default function ContatoForm() {
       [name]: value,
     }));
   };
-
-  const formRef = useRef(null);
 
   const handleSubmit = () => {
     setTimeout(() => {
