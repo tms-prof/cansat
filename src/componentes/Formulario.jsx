@@ -20,9 +20,11 @@ export default function ContatoForm() {
 
   const handleSubmit = () => {
     setTimeout(() => {
-      if (formRef.current) {
-        formRef.current.reset(); // limpa após envio
-      }
+      setFormData({
+        nome: "",
+        email: "",
+        mensagem: "",
+      });
     }, 1000); // tempo para garantir que o envio ocorra
   };
 
